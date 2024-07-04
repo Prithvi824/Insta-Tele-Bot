@@ -9,6 +9,7 @@ import requests
 import threading
 from flask import Flask, request
 from Bot.drive import DriveHandler
+from Bot.telegram.bot import run_bot
 
 # Flask App
 app = Flask(__name__)
@@ -140,6 +141,10 @@ if __name__ == '__main__':
     worker_thread = threading.Thread(target=worker)
     worker_thread.daemon = True
     worker_thread.start()
+
+    # Run the Bot thread
+    bot_thread = threading.Thread(target=run_bot)
+    bot_thread.start()
 
     # Run the app on port 10000
     app.run(host="0.0.0.0",port=10000)

@@ -2,6 +2,7 @@ Include/
 Lib/
 Scripts/
 Bot/__pycache__
+Bot/telegram/__pycache__
 pyvenv.cfg
 .env
 creds.json
