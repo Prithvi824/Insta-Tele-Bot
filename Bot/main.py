@@ -7,9 +7,9 @@ import dotenv
 import logging
 import requests
 import threading
+from bot import run_bot
+from drive import DriveHandler
 from flask import Flask, request
-from Bot.drive import DriveHandler
-from Bot.telegram.bot import run_bot
 
 # Flask App
 app = Flask(__name__)
