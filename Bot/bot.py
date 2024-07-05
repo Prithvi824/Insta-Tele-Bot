@@ -77,4 +77,5 @@ async def start_polling() -> None:
     await dp.start_polling(bot, polling_timeout=5)
 
 def run_bot():
+    print("The bot is running now...")
     asyncio.run(start_polling())

@@ -142,10 +142,11 @@ if __name__ == '__main__':
     worker_thread.daemon = True
     worker_thread.start()
 
-    # Run the Bot thread
-    bot_thread = threading.Thread(target=app.run(host="0.0.0.0",port=10000))
-    bot_thread.start()
-
+    # Run the Server thread
     # Run the app on port 10000
-    # app.run(host="0.0.0.0",port=10000)
+    server_thread = threading.Thread(target=app.run, args=["0.0.0.0",10000])
+    server_thread.daemon = True
+    server_thread.start()
+
+    # Run the Bot
     run_bot()
