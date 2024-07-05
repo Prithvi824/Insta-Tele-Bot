@@ -143,8 +143,9 @@ if __name__ == '__main__':
     worker_thread.start()
 
     # Run the Bot thread
-    bot_thread = threading.Thread(target=run_bot)
+    bot_thread = threading.Thread(target=app.run(host="0.0.0.0",port=10000))
     bot_thread.start()
 
     # Run the app on port 10000
-    app.run(host="0.0.0.0",port=10000)
+    # app.run(host="0.0.0.0",port=10000)
+    run_bot()
