@@ -111,10 +111,10 @@ def handle_reel():
         reel = data.get("reel")
 
         # Put this in task with accordance to its folder id
-        if account == "luxury":
-            pending_tasks.put([reel, LUXURY])
-        elif account == "anime":
-            pending_tasks.put([reel, ANIME])
+        if account == "FOLDER2":
+            pending_tasks.put([reel, FOLDER2])
+        elif account == "FOLDER1":
+            pending_tasks.put([reel, FOLDER1])
         else:
             return "No folder found", 404
 
@@ -132,8 +132,8 @@ if __name__ == '__main__':
 
     # initialize variables
     TOKEN = os.getenv("TOKEN")          # Verification Token
-    ANIME = os.getenv("ANIME")          # Constant for a drive folder
-    LUXURY = os.getenv("LUXURY")        # Constant for a drive folder
+    FOLDER1 = os.getenv("FOLDER1")          # Constant for a drive folder
+    FOLDER2 = os.getenv("FOLDER2")        # Constant for a drive folder
     pending_tasks = queue.Queue()       # Task queue for pending tasks
     user_drive = DriveHandler('creds.json', os.getenv("PARENT_FOLDER"))         # G-Drive Instance
 

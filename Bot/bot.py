@@ -24,9 +24,9 @@ async def start(message: types.message.Message) -> None:
         await message.answer("I'm sorry this bot is not built for you.")
     else:
         keyboard = InlineKeyboardBuilder()
-        keyboard.button(text="Get Lyrical Video.", callback_data='lyrics')
-        keyboard.button(text="Get Shorts for Anime Edits.", callback_data='anime')
-        keyboard.button(text="Get Shorts for Luxury life.", callback_data='luxury')
+        keyboard.button(text="Get Video from Folder 1.", callback_data='FOLDER1')
+        keyboard.button(text="Get Video from Folder 2", callback_data='FOLDER2')
+        keyboard.button(text="Get Video from Folder 3.", callback_data='FOLDER3')
         keyboard.adjust(1)
         msg = "Welcome to Your bot.\n\nThe Bot has all these options, Please choose one of them.\n"
         await message.answer(msg, reply_markup=keyboard.as_markup())
@@ -55,16 +55,8 @@ async def send_video(chat: str):
 # Define a callback handler to process button presses
 @dp.callback_query()
 async def button(callback_query: types.CallbackQuery):
-    if callback_query.data == 'lyrics':
-        await send_video("LYRICS_FOLDER")
-        await bot.delete_message(callback_query.message.chat.id, callback_query.message.message_id - 1)
-        await callback_query.message.delete()
-    elif callback_query.data == 'anime':
-        await send_video("ANIME")
-        await bot.delete_message(callback_query.message.chat.id, callback_query.message.message_id - 1)
-        await callback_query.message.delete()
-    elif callback_query.data == 'luxury':
-        await send_video("LUXURY")
+    if callback_query.data.startswith("FOLDER"):
+        await send_video(callback_query.data)
         await bot.delete_message(callback_query.message.chat.id, callback_query.message.message_id - 1)
         await callback_query.message.delete()
     elif callback_query.data.startswith("del-"):
